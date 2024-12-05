@@ -7,11 +7,12 @@ const httpServer = createServer(app);
 const io = new Server(httpServer, { cors: { origin: "*" } });
 
 io.on("connection", (socket) => {
-  console.log("User connected with ID===>>:", socket.id);
-  // Listening for 'btn_clicked' event
-  socket.on("btn_clicked", () => {
-    console.log("Button clicked by user:");
-    socket.emit("click_smt");
+  socket.on("send_message", (msg) => {
+    socket.broadcast.emit("receive_message", msg);
+  });
+  socket.on("new_user", (data) => {
+    socket.broadcast.emit("new_user")
+    console.log("data", data);
   });
 
   // Handling disconnection
