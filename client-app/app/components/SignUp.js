@@ -5,6 +5,7 @@ const SignUp = ({ user, socket, input, setInput }) => {
     socket.emit("new_user", { user: input });
     setInput();
   };
+
   return (
     <div className="w-full h-full flex flex=col items-center justify-center">
       <div className="text-center grid grid-rows-3 gap-2 gradient p-8 rounded-md">
