@@ -11,11 +11,11 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("receive_message", msg);
   });
   socket.on("new_user", (data) => {
-    socket.broadcast.emit("new_user")
+    socket.broadcast.emit("new_user");
     console.log("data", data);
   });
 
-  // Handling disconnection
+  // Handling disconnections
   socket.on("disconnect", () => {
     console.log("User disconnected with ID:", socket.id);
   });
