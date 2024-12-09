@@ -11,6 +11,7 @@ const Inputs = ({ user, socket, setChat }) => {
     if (input) {
       const msg = { content: input, type: "text", user };
       socket.emit("send_message", msg);
+      socket.emit("user_typing", { user: user.name, typing: false });
       setChat((prev) => [...prev, msg]);
       setInput("");
     } else {
@@ -38,6 +39,10 @@ const Inputs = ({ user, socket, setChat }) => {
   // userTyping function
   const userTyping = (e) => {
     setInput(e.target.value);
+    socket.emit("user_typing", {
+      user: user.name,
+      typing: e.target.value ? true : false,
+    });
   };
 
   return (

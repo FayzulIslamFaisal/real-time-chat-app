@@ -10,6 +10,12 @@ io.on("connection", (socket) => {
   socket.on("send_message", (msg) => {
     socket.broadcast.emit("receive_message", msg);
   });
+
+  socket.on("user_typing", (data) => {
+    console.log(data, "server");
+    socket.broadcast.emit("user_typing", data);
+  });
+
   socket.on("new_user", (data) => {
     socket.broadcast.emit("new_user");
     console.log("data", data);
